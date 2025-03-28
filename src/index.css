@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.fondo {
+  min-height: 100vh;  /* Asegura que ocupe al menos toda la altura de la pantalla */
+  width: 100%;  /* Asegura que ocupe todo el ancho */
+  background-image: url('assets/fondoxdxd.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  position: absolute;  /* Garantiza que se extienda a través de la pantalla */
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) { /* Vista para teléfonos */
+  .fondo {
+    background-position: right; /* Muestra el lado derecho de la imagen */
+  }
+}
+ 
+.logoapp {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  background: url('./assets/fn.png') no-repeat center center;
+  background-size: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.descarga {
+  width: 100%;
+  max-width: auto;
+  height: auto;
+  background: url('./assets/descarga.png') no-repeat center center;
+  background-size: cover;
+  transition: transform 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) translateX(20px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float infinite ease-in-out;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes colorChange {
+  0% { background-color: #ff7e5f; }
+  50% { background-color: #feb47b; }
+  100% { background-color: #ff7e5f; }
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.animate-gradientMove {
+  background: linear-gradient(270deg, #ff7e5f, #feb47b);
+  background-size: 200% 200%;
+  animation: gradientMove 5s ease infinite;
+}
+.animate-colorChange {
+  animation: colorChange 3s ease infinite;
+}
+.animate-blink {
+  animation: blink 1.5s ease infinite;
+}
+
+@keyframes fade-in-up {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+@keyframes slide {
+  0%, 25% {
+      transform: translateX(0);
+  }
+  50%, 75% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+.xdxd{
+  background-color: rgb(192, 196, 200);
+}
+
+.aa {
+  width: 50%;
+  max-width: auto;
+  height: auto;
+  background: url('./assets/a.jpg') no-repeat center center;
+  background-size: cover; 
+  transition: transform 0.3s ease-in-out;
+}
