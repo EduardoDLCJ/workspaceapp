@@ -77,7 +77,7 @@ const Login = () => {
             if (response.status === 201) {
                 setAlertMessage('Usuario registrado con éxito');
                 setAlertType('success');
-                navigate('/dashboard');
+                setIsLogin(true);
             } else if (response.status === 400) {
                 setAlertMessage('El correo ya está registrado');
                 setAlertType('error');
@@ -112,50 +112,54 @@ const Login = () => {
                 </div>
             )}
 
-            {/* Mitad izquierda con degradado */}
-            <div className="w-1/2 bg-gradient-to-r from-blue-600 to-blue-50 relative flex flex-col items-center justify-center">
-            {/* Formas geométricas decorativas */}
-            <div className="absolute top-10 left-10 w-24 h-24 bg-white opacity-20 rounded-full"></div>
-            <div className="absolute top-40 left-20 w-32 h-32 bg-white opacity-30 rounded-lg"></div>
-            <div className="absolute bottom-20 left-10 w-20 h-20 bg-white opacity-25 rotate-45"></div>
-            <div className="absolute bottom-10 right-10 w-28 h-28 bg-white opacity-15 rounded-full"></div>
-            
-            {/* Texto llamativo */}
-            <h2 className="text-center text-white text-3xl font-bold mb-6 px-10">
-                {isLogin
-                    ? '¡Bienvenido de nuevo!'
-                    : '¡Únete a nosotros!'}
-            </h2>
-            <p className="text-center text-white text-lg mb-8 px-10 opacity-90">
-                {isLogin
-                    ? 'Inicia sesión para descubrir todo lo que tenemos para ti.'
-                    : 'Crea tu cuenta y disfruta de nuestros servicios exclusivos.'}
-            </p>
+{/* Mitad izquierda con degradado - Oculto en móviles */}
+<div className="hidden md:flex md:w-1/2 bg-gradient-to-r from-blue-600 to-blue-100 relative items-center justify-center">
+    {/* Formas geométricas decorativas */}
+    <div className="absolute top-10 left-10 w-24 h-24 bg-white opacity-20 rounded-full"></div>
+    <div className="absolute top-40 left-20 w-32 h-32 bg-white opacity-30 rounded-lg"></div>
+    <div className="absolute bottom-20 left-10 w-20 h-20 bg-white opacity-25 rotate-45"></div>
+    <div className="absolute bottom-10 right-10 w-28 h-28 bg-white opacity-15 rounded-full"></div>
     
-        {/* Botón transparente con borde */}
-        <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="absolute bottom-10 left-10 bg-transparent border-2 border-white text-white px-6 py-2 rounded-full hover:bg-white hover:bg-opacity-20 transition-colors duration-300 shadow-md"
-        >
-            {isLogin ? 'Regístrate aquí' : 'Inicia sesión'}
-        </button>
-</div>
+    {/* Contenedor de texto centrado */}
+    <div className="flex flex-col items-center justify-center text-center w-full px-4 z-10">
+        <h2 className="text-white text-3xl font-bold mb-6 w-full max-w-md px-4">
+            {isLogin ? '¡Bienvenido de nuevo!' : '¡Únete a nosotros!'}
+        </h2>
+        <p className="text-white text-lg mb-8 w-full max-w-md px-4 opacity-90">
+            {isLogin
+                ? 'Inicia sesión para descubrir todo lo que tenemos para ti.'
+                : 'Crea tu cuenta y disfruta de nuestros servicios exclusivos.'}
+        </p>
+    </div>
 
-            {/* Mitad derecha con el formulario */}
-            <div className="w-1/2 flex items-center justify-center bg-blue-50">
-                <div className="bg-blue-50 p-7 rounded-4xl shadow-md w-full max-w-md relative z-10 sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-                    <h2 className="text-2xl font-bold mb-6 text-center text-blue-600 sm:text-3xl lg:text-4xl">
-                        {isLogin ? 'Iniciar sesión' : 'Registro'}
-                    </h2>
+    
+            {/* Botón transparente con borde */}
+            <button
+                onClick={() => setIsLogin(!isLogin)}
+                className="absolute bottom-10 left-10 bg-transparent border-2 border-white text-white px-6 py-2 rounded-full hover:bg-blue-900 hover:bg-opacity-20 transition-colors duration-300 shadow-md"
+            >
+                {isLogin ? 'Regístrate aquí' : 'Inicia sesión'}
+            </button>
+        </div>
 
-                    <button
-                        onClick={() => setIsLogin(!isLogin)}
-                        className="w-full text-center text-blue-500 underline mb-4 hover:text-blue-600 transition-colors duration-300"
-                    >
-                        {isLogin
-                            ? '¿No tienes una cuenta? Regístrate'
-                            : '¿Ya tienes una cuenta? Inicia sesión'}
-                    </button>
+
+            
+        {/* Mitad derecha con el formulario - Ocupa todo el ancho en móviles */}
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-blue-100 p-4 md:p-0">
+            <div className="bg-blue-50 p-7 rounded-2xl md:rounded-4xl shadow-md w-full max-w-md relative z-10 sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+                <h2 className="text-2xl font-bold mb-6 text-center text-blue-600 sm:text-3xl lg:text-4xl">
+                    {isLogin ? 'Iniciar sesión' : 'Registro'}
+                </h2>
+
+                {/* Mostrar este botón solo en móviles */}
+                <button
+                    onClick={() => setIsLogin(!isLogin)}
+                    className="md:hidden w-full text-center text-blue-500 underline mb-4 hover:text-blue-600 transition-colors duration-300"
+                >
+                    {isLogin
+                        ? '¿No tienes una cuenta? Regístrate'
+                        : '¿Ya tienes una cuenta? Inicia sesión'}
+                </button>
                     {isLogin ? (
                         <form onSubmit={handleSubmitLogin}>
                             {/* Formulario de inicio de sesión */}
@@ -226,6 +230,21 @@ const Login = () => {
                                     <p>Iniciar sesión</p>
                                 )}
                             </button>
+                            <div className="flex items-center justify-between mt-4">
+                                <label className="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        className="mr-2"
+                                    />
+                                    Recordar sesión
+                                </label>
+                                <a
+                                    href="/recuperar"
+                                    className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+                                >
+                                    Olvidé mi contraseña
+                                </a>
+                            </div>
                         </form>
                     ) : (
                         <form onSubmit={handleSubmitRegister}>

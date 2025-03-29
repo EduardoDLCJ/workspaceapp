@@ -8,6 +8,7 @@ import Respaldos from './ventanas/respaldos';
 import CrudUsuarios from './ventanas/crud';
 import ProtectedRoute from './middleware/auth';
 import Entorno from './Entorno';
+import Recuperar from './ventanas/recuperar';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/recuperar" element={<Recuperar />} />
         
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoute allowedRoles={['user']} />}>
